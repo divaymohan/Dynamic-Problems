@@ -4,11 +4,13 @@
 #include <string.h>
 
 #define MAX 20
+//prototypes
 int min(int, int, int);
 int editDistance(char *, char *);
 int main(int argc, char *argv[])
 {
     FILE *fp;
+    //open input file
     fp = fopen(argv[1], "r");
     int t;
     fscanf(fp, "%d", &t);
@@ -29,19 +31,27 @@ int editDistance(char *str1, char *str2)
 {
     int l1 = strlen(str1);
     int l2 = strlen(str2);
+    //declaring resutMatrix
     int resultMat[l1 + 1][l2 + 1];
-    for (int i = 0; i <= l1; i++)
+    resultMat[0][0] = 0;
+    for (int i = 1; i <= l1; i++)
     {
-        resultMat[0][i] = INT_MAX;
-        resultMat[i][0] = 0;
+        //initailization
+
+        resultMat[i][0] = i;
+    }
+    for (int i = 1; i <= l2; i++)
+    {
+        //initailization
+        resultMat[0][i] = i;
     }
     for (int i = 1; i <= l1; i++)
     {
         for (int j = 1; j <= l2; j++)
         {
-            if (str2[i - 1] == str2[j - 1])
+            if (str1[i - 1] == str2[j - 1])
             {
-                resultMat[i][j] = resultMat[i - 1][j - 1];
+                resultMat[i][j] = min(resultMat[i - 1][j - 1], resultMat[i - 1][j] + 1, resultMat[i][j - 1] + 1);
             }
             else
             {

@@ -1,5 +1,7 @@
-2
+3
 abcd
 abc
 abcde
 abc
+bdcaba
+abcbdab
