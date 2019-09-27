@@ -101,6 +101,36 @@ int getLongestCommonSubSequenceByDynamic(char *str1, char *str2, int strl1, int 
             }
         }
     }
+    printf("\n\nSolution Matrix \n\n");
+    for (int i = 0; i <= strl1; i++)
+    {
+        for (int j = 0; j <= strl2; j++)
+        {
+            printf("%d ", result[i][j]);
+        }
+        printf("\n");
+    }
+    int i = strl1;
+    int j = strl2;
+    while (result[i][j] != 0)
+    {
+        if (result[i][j] == result[i - 1][j])
+        {
+            i = i - 1;
+        }
+        else if (result[i][j] == result[i][j - 1])
+        {
+            j = j - 1;
+        }
+        else
+        {
+            printf("%c", (char)str1[i]);
+            i = i - 1;
+            j = j - 1;
+        }
+    }
+    printf("%c", (char)str1[i]);
+
     return result[strl1][strl2];
 }
 int max(int a, int b)
